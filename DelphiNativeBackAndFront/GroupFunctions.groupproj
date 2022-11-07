@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{33543EB1-7990-4934-8316-279A91F44843}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="CRMwithCloud.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="functionDelphiAzure.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="CRMwithCloud">
+        <MSBuild Projects="CRMwithCloud.dproj"/>
+    </Target>
+    <Target Name="CRMwithCloud:Clean">
+        <MSBuild Projects="CRMwithCloud.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CRMwithCloud:Make">
+        <MSBuild Projects="CRMwithCloud.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="functionDelphiAzure">
+        <MSBuild Projects="functionDelphiAzure.dproj"/>
+    </Target>
+    <Target Name="functionDelphiAzure:Clean">
+        <MSBuild Projects="functionDelphiAzure.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="functionDelphiAzure:Make">
+        <MSBuild Projects="functionDelphiAzure.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="CRMwithCloud;functionDelphiAzure"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="CRMwithCloud:Clean;functionDelphiAzure:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="CRMwithCloud:Make;functionDelphiAzure:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
